@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { contacts } from './data';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-label-value';
+  contacts = contacts;
+
+  keepOriginalKeyOrder() {
+    return 0;
+  }
 }
