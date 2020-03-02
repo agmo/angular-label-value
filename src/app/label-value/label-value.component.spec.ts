@@ -19,10 +19,8 @@ describe('LabelValueComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LabelValueComponent ]
     })
-    .compileComponents();
-  }));
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LabelValueComponent);
     component = fixture.componentInstance;
     labelDe = fixture.debugElement.query(By.css('b'));
@@ -34,7 +32,7 @@ describe('LabelValueComponent', () => {
     component.label = mockLabel;
     component.value = mockValue;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -44,11 +42,25 @@ describe('LabelValueComponent', () => {
     expect(labelEl.textContent).toContain(mockLabel);
   });
 
-  it('should display value', () => {
+  it('should display label followed by value', () => {
+    expect(containerEl.textContent).toContain(`${mockLabel}:${mockValue}`);
+  });
+
+  it('should display string value as a string', () => {
     expect(valueEl.textContent).toContain(mockValue);
   });
 
-  it('should display label followed by value', () => {
-    expect(containerEl.textContent).toContain(`${mockLabel}:${mockValue}`);
+  it('should display boolean value of true as Yes', () => {
+    component.value = true;
+    fixture.detectChanges();
+
+    expect(valueEl.textContent).toContain('Yes');
+  });
+
+  it('should display boolean value of false as No', () => {
+    component.value = false;
+    fixture.detectChanges();
+
+    expect(valueEl.textContent).toContain('No');
   });
 });
